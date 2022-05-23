@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-table_edit_container slds-is-relative">
+        <table aria-multiselectable="true"
+               class="slds-table slds-no-cell-focus slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols"
+               role="grid" 
+               aria-label="Example default inline edit table with cell focused">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="column_number slds-col slds-size_1-of-12" scope="col">
+                        <div class="slds-truncate slds-assistive-text" title="Errors">Errors</div>
+                    </th>
+                    <th aria-label="Name"
+                        aria-sort="none"
+                        class="slds-is-resizable slds-is-sortable column_name slds-col slds-size_4-of-12"
+                        scope="col">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                            <span class="slds-truncate" title="Name">Name</span>
+                        </div>
+                    </th>
+                    <th aria-label="Rating" 
+                        aria-sort="none"
+                        class="column_rating slds-col slds-size_4-of-12"
+                        scope="col">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                            <span class="slds-truncate" title="Rating">Rating</span>
+                        </div>
+                    </th>
+                    <th aria-label="Actions"
+                        aria-sort="none" 
+                        class="column_actions slds-col slds-size_2-of-12"
+                        scope="col">
+                        <div class="slds-grid slds-grid_vertical-align-right ">
+                            <span class="slds-truncate" title="Actions">Actions</span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={accounts} for:item="row">
+                    <c-row key={row.Id} row={row} ondraftvalurchanged={onDraftValueChanged} ondelete={onDelete}></c-row>
+                </template>
+            </tbody>
+        </table>
+        <footer if:true={showFooter} class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={onCancel}>Cancel</button>
+            <button class="slds-button slds-button_brand" onclick={onSave}>Save</button>
+        </footer>
+    </div>
+</template>

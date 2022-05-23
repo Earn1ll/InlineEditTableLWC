@@ -1,0 +1,29 @@
+:host {
+    display: table-row;
+}
+
+.slds-hint-parent {
+    width: 100%; 
+    display: contents;
+}
+
+.slds-popover_edit {
+    position: absolute;
+    top: 0;
+    left: 0.0625rem;
+}
+
+.cell_delete {
+    display: flex;
+    justify-content: center; 
+}
+.hover-icon {
+    display: flex;
+    justify-content: left; 
+    --sds-c-icon-color-foreground-default: rgb(179, 177, 177);
+    transition: all 0.3s ease-in;
+}
+.hover-icon:hover {
+    --sds-c-icon-color-foreground-default: rgb(17, 3, 146);
+    cursor: pointer;
+}

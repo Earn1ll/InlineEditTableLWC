@@ -1,0 +1,10 @@
+
+.slds-modal__footer {
+    display: flex; 
+    justify-content: center;
+}
+.slds-col {
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+}

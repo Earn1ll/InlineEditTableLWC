@@ -1,0 +1,103 @@
+<template>
+    <tr aria-selected="false" class="slds-hint-parent">
+        <th class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title={row.Index}>{row.Index}</span>
+            </span>
+        </th>
+        <th data-th-name-id={row.Id} class="slds-cell-edit" scope="row" tabindex="0">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title={row.Rating}>{draftNameValue}</span>
+                <button if:true={row.controlEditName}
+                        onclick={handleEditName}
+                        title="Edit"
+                        class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small hover-icon"
+                        tabindex="-1">
+                    <lightning-icon size="xx-small"
+                                    class="slds-button__icon slds-button__icon_hint slds-button__icon_edit"
+                                    icon-name="utility:edit"
+                                    alternative-text="Edit" title="Edit">
+                    </lightning-icon>
+                </button>
+            </span>
+            <section if:true={showModalEditName} 
+                     aria-describedby="dialog-body-id-{row.Index}" 
+                     class="slds-popover slds-popover slds-popover_edit"
+                     role="dialog">
+                <div class="slds-popover__body">
+                    <div class="slds-media">
+                        <div class="slds-media__body">
+                            <div class="slds-form-element slds-grid slds-wrap">
+                                <label class="slds-form-element__label slds-form-element__label_edit slds-no-flex">
+                                    <span class="slds-assistive-text">{draftNameValue}</span>
+                                </label>
+                                <div class="slds-form-element__control slds-grow">
+                                    <input autofocus type="text" 
+                                           class="slds-input"
+                                           data-id={row.Id}
+                                           value={draftNameValue}
+                                           onblur={handleNameOnBlur}
+                                           onkeyup={handleNameOnKeyUp}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </th>
+        <th data-th-rating-id={row.Id} class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title={row.Rating}>{draftRatingValue}</span>
+                <button if:true={row.controlEditRating} 
+                        onclick={handleEditRating}
+                        title="Edit"
+                        class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small hover-icon"
+                        tabindex="-1">
+                    <lightning-icon size="xx-small" 
+                                    class="slds-button__icon slds-button__icon_hint slds-button__icon_edit"
+                                    icon-name="utility:edit"
+                                    alternative-text="Edit"
+                                    title="Edit">
+                    </lightning-icon>
+                </button>
+            </span>
+            <section if:true={showModalEditRating}
+                     aria-describedby="dialog-body-id-{row.Index}"
+                     class="slds-popover slds-popover slds-popover_edit"
+                     role="dialog">
+                <div class="slds-popover__body">
+                    <div class="slds-media">
+                        <div class="slds-media__body">
+                            <div class="slds-form-element slds-grid slds-wrap">
+                                <label class="slds-form-element__label slds-form-element__label_edit slds-no-flex">
+                                    <span class="slds-assistive-text">{draftRatingValue}</span>
+                                </label>
+                                <lightning-combobox data-id={row.Id}
+                                                    name="picklist"
+                                                    label={label}
+                                                    value={draftRatingValue}
+                                                    placeholder={placeholder} 
+                                                    options={ratingOptions}
+                                                    dropdown-alignment="auto" 
+                                                    onblur={handleRatingOnBlur}
+                                                    onchange={handleRatingOnchange}> 
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </th>
+        <th data-th-rating-id={row.Id} class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread cell_delete">
+                <lightning-icon size="xx-small"
+                                class="slds-button__icon_left hover-icon"
+                                icon-name="utility:delete" 
+                                alternative-text="Delete" 
+                                title="Delete" 
+                                onclick={handleDelete} >
+                </lightning-icon>
+            </span>
+        </th>
+    </tr>
+</template>
